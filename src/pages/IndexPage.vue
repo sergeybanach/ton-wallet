@@ -27,6 +27,8 @@ const validateTelegramUser = async () => {
     console.log(error);
   }
 };
+
+console.log("import.meta.env.VITE_BACKEND: ", import.meta.env.VITE_BACKEND);
 </script>
 
 <template>
