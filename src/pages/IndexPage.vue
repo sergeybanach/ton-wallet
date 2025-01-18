@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { routes } from "@/router";
 import AppPage from "@/components/AppPage.vue";
 import AppLink from "@/components/AppLink.vue";
@@ -23,10 +23,20 @@ const validateTelegramUser = async () => {
     );
 
     alert(JSON.stringify(response));
+    pageState.isValidTelegramUser = false;
   } catch (error) {
     console.log(error);
   }
 };
+
+const pageState = reactive({
+  isValidTelegramUser: false,
+});
+
+onMounted(async () => {
+  pageState.isValidTelegramUser = false;
+  await validateTelegramUser();
+});
 
 console.log("import.meta.env.VITE_BACKEND: ", import.meta.env.VITE_BACKEND);
 </script>
